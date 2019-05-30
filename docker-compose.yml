@@ -1,0 +1,46 @@
+# version
+version: '3'
+
+# define services.
+services:
+  # MongoDB.
+  mongo:
+    image: mongo
+    container_name: mongo-graphQL
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+    volumes:
+      - graphQL-data:/data/db
+      - .docker/initdc.js:/docker-entrypoint-initdb.d/initdb.js:ro
+    ports:
+      - ${MONGO_INIT_PORT}:27017
+
+  # App
+  app:
+    image: ambientum/node:latest
+    container_name: app-graphQL
+    depends_on:
+      - mongo
+    ports:
+      - ${PORT}:3000
+    volumes:
+      - .:/var/www/app
+      - graphQLdot-config:/home/ambientum/.config
+      - graphQLdot-cache:/home/ambientum/.cache
+      - graphQLdot-local:/home/ambientum/.local
+      - graphQLdot-yarn:/home/ambientum/.yarn
+    links:
+      - mongo
+    command: yarn start
+
+# volumes
+volumes:
+  # database storage.
+  graphQL-data:
+  # local caching.
+  graphQLdot-config:
+  graphQLdot-cache:
+  graphQLdot-local:
+  graphQLdot-yarn:
