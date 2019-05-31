@@ -1,5 +1,6 @@
 ## graphQLapi
-Repositório de Estudos sobre API's com GraphQL [http://graphqlapi.local](http://graphqlapi.local).
+Repositório de Estudos sobre API's com GraphQL 
+Código fonte hospedado em : [https://son-graphql-api.herokuapp.com/](https://son-graphql-api.herokuapp.com/).
 
 
 # 1. Instruções para o Desenvolvimento.
