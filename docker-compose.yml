@@ -13,7 +13,7 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
     volumes:
       - graphQL-data:/data/db
-      - .docker/initdc.js:/docker-entrypoint-initdb.d/initdb.js:ro
+      - .docker/initdb.js:/docker-entrypoint-initdb.d/initdb.js:ro
     ports:
       - ${MONGO_INIT_PORT}:27017
 
