@@ -1,32 +1,21 @@
-import store from './store'
-import uuid from 'uuid/v1'
+// Importando os Pacotes NodeJs e/ou Funcões da Aplicação
+import TaskController from '../../controllers/TaskController'
 
+// Resolver para Resgatar Todas as Tasks
 const tasks = () => {
-  return store.tasks
+  const tasks = TaskController.index()
+
+  return tasks
 }
 
+// Resolver para Criar uma Task
 const createTask = ({ title }) => {
-  const task = {
-    id: uuid(),
-    title: title
-  }
-  store.tasks.push(task)
+  const task = TaskController.store(title)
+
   return task
 }
-
-/*
-const users = () => {
-
-}
-
-const createUser = () => {
-
-}
-*/
 
 export default {
   tasks,
   createTask
-  // users,
-  // createUser
 }

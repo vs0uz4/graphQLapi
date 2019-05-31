@@ -1,5 +1,7 @@
+// Importando os Pacotes NodeJs e/ou Funcões da Aplicação
 import { buildSchema } from 'graphql'
 
+// Criando o Schema da Entidade Task
 const schema = buildSchema(`
   type Task {
     id: ID!,

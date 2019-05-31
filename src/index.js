@@ -1,7 +1,8 @@
-// Importando os Pacotes NPM
+// Importando os Pacotes NodeJs e/ou Funcões da Aplicação
 import dotenv from 'dotenv'
 import express from 'express'
 import exGraphql from 'express-graphql'
+import mongoose from './services/mongo'
 import schema from './services/graphql/schema'
 import resolvers from './services/graphql/resolvers'
 
@@ -17,6 +18,9 @@ app.use('/', exGraphql({
   rootValue: resolvers,
   graphiql: true
 }))
+
+// Conectando ao MongoDB
+mongoose()
 
 // Iniciando o Sevidor (Aplicação)
 app.listen(process.env.PORT || 3000, '0.0.0.0', error => {
