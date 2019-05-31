@@ -8,12 +8,12 @@
 /* eslint-disable */
 db.createUser(
   {
-    user: 'graphQLapi',
-    pwd: 'graphQLapi',
+    user: 'graphqlapi',
+    pwd: 'graphqlapi',
     roles: [
       {
         role: 'readWrite',
-        db: 'graphQLapi'
+        db: 'graphqlapi'
       }
     ]
   }
