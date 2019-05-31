@@ -1,17 +1,22 @@
 // Importando os Pacotes NPM
-import express from 'express'
 import dotenv from 'dotenv'
-
-// Instanciando a Aplicação
-const app = express()
+import express from 'express'
+import exGraphql from 'express-graphql'
+import schema from './services/graphql/schema'
+import resolvers from './services/graphql/resolvers'
 
 // Resgatando as Variaveis de Ambiente do Arquivo .env
 dotenv.config()
 
-// Rota Inicial da Aplicação (Mensagem de Boas Vindas)
-app.get('/', (req, res, next) => {
-  res.status(200).json({ message: 'YEAH! Seja Bem-Vindo a API GraphQL' })
-})
+// Instanciando a Aplicação
+const app = express()
+
+// Injetando a Dependencia do GraphQL
+app.use('/', exGraphql({
+  schema: schema,
+  rootValue: resolvers,
+  graphiql: true
+}))
 
 // Iniciando o Sevidor (Aplicação)
 app.listen(process.env.PORT || 3000, '0.0.0.0', error => {
