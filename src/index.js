@@ -12,8 +12,13 @@ dotenv.config()
 // Instanciando a Aplicação
 const app = express()
 
+// Defininino uma Rota Padrão
+app.get('/', (req, res, next) => {
+  res.status(200).json({ message: 'Enjoy The Silence!' })
+})
+
 // Injetando a Dependencia do GraphQL
-app.use('/', exGraphql({
+app.use('/graphiql', exGraphql({
   schema: schema,
   rootValue: resolvers,
   graphiql: true
