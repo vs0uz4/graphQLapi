@@ -39,17 +39,14 @@ PORT=3000
 # MongoDB Variables for Container Inicialization
 MONGO_INITDB_ROOT_USERNAME=usuario_root
 MONGO_INITDB_ROOT_PASSWORD=senha_root
-MONGO_INITDB_DATABASE=base_de_dados_a_ser_criada
 MONGO_INIT_PORT=27017
 
 # MongoDB Variables for Connection
 MONGODB_HOST=mongo
 MONGODB_USER=usuario
 MONGODB_PASSWORD=senha
-MONGODB_DATABASE=$MONGO_INITDB_DATABASE
+MONGODB_DATABASE=base_de_dados_a_ser_criada
 ```
-
-> Note que a variável `MONGODB_DATABASE` automaticamente recebe o valor da variável `MONGO_INITDB_DATABASE`, este valor deve permanecer desta maneira, de forma que não exista a possibilidade de termos diferentes base de dados sendo informadas nas variáveis.
 
 ### 1.1.4 Criando/Alterando o Arquivo de Inicialização da Base de Dados MongoDB.
 
@@ -70,7 +67,7 @@ db.createUser(
 )
 ```
 
-> Substitua todos os valores `< ... >` pelos valores equivalentes de suas variáveis de ambiente. Respectivamente `MONGODB_USER`, `MONGODB_PASSWORD`, `MONGO_INITDB_DATABASE`.
+> Substitua todos os valores `< ... >` pelos valores equivalentes de suas variáveis de ambiente. Respectivamente `MONGODB_USER`, `MONGODB_PASSWORD`, `MONGODB_DATABASE`.
 
 ### 1.1.5 Criando e Inicializando a Base de Dados no MongoDB (somente quando a primeira execução).
 
@@ -95,5 +92,10 @@ Recomendamos que seja utilizado `graphqlapi.local` como o host virtual, pois tra
 | Resource        | Value                                               |
 | -               | -                                                   |
 | Application     | http://graphqlapi.local:3000                        |
+| GraphiQL        | http://graphqlapi.local:3000/graphiql               |
 | MongoDB         | mongodb://graphQLapi:graphQLapi@mongo/graphQLapi    |
 
+
+## Todo
+
+~~Implementar retorno dos campos `created_at` e `updated_at` na API GraphQL.~~
