@@ -10,11 +10,37 @@ class TaskController {
     return tasks
   }
 
-  // Criar uma Task
-  async store (title) {
-    const task = await Task.create({ title })
+  // Regatr uma Task Específica
+  async show (id) {
+    const task = await Task.findById(id)
 
     return task
+  }
+
+  // Criar uma Task
+  async store (title) {
+    const newTask = await Task.create({ title })
+
+    return newTask
+  }
+
+  // Criar uma Task
+  async update (id, title) {
+    const task = await Task.findByIdAndUpdate(id, { title })
+      .then(async data => {
+        const updatedTask = await Task.findById(data.id)
+
+        return updatedTask
+      })
+
+    return task
+  }
+
+  // Remover uma Task
+  async delete (id) {
+    const deletedTask = await Task.findByIdAndRemove(id)
+
+    return deletedTask
   }
 }
 

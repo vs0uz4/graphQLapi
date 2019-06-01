@@ -1,19 +1,27 @@
 // Importando os Pacotes NodeJs e/ou Funcões da Aplicação
 import { buildSchema } from 'graphql'
+import './types/GraphQLTimestamp'
 
 // Criando o Schema da Entidade Task
 const schema = buildSchema(`
+  scalar Timestamp
+
   type Task {
-    id: ID!,
-    title: String!
+    _id: ID!,
+    title: String!,
+    created_at: Timestamp!,
+    updated_at: Timestamp!
   }
 
   type Query {
-    tasks: [Task!]!
+    taskById(_id: String!): Task,
+    tasks: [Task]
   }
 
   type Mutation {
-    createTask(title: String!): Task!
+    createTask(title: String!): Task,
+    updateTask(_id: String!, title: String!): Task,
+    deleteTask(_id: String!): Task
   }
 `)
 
